@@ -4,6 +4,7 @@ import os
 import csv
 import requests
 import datetime
+import json
 
 CLK = 24
 CS = 4
@@ -32,7 +33,10 @@ while(running):
             nowtimetxt = dtNow.strftime('%Y-%m-%d %H:%M:%S')
             temp = thermocouple.get_temp()
             data = [nowtimetxt, temp]
-            response = requests.post(url, data= {'date' : nowtimetxt, 'temp' : temp}) # POST request
+            prejsondata = {'date' : nowtimetxt, 'temp' : temp}
+            jsondata = json.dumps(prejsondata).encode('utf-8')
+
+            response = requests.post(url, jsondata) # POST request
             print(response.text)
 
             # csv file make
