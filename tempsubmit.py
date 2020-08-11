@@ -29,10 +29,11 @@ while(running):
 
         if elapsedtime % (divtime * 60) == 0:
             dtNow = datetime.datetime.now()
+            nowtimetxt = dtNow.strftime('%Y-%m-%d %H:%M:%S')
             temp = thermocouple.get_temp()
-            data = [dtNow, temp]
-            # response = requests.post(url, data= {'date' : dtNow, 'temp' : temp}) # POST request
-            print(data)
+            data = [nowtimetxt, temp]
+            response = requests.post(url, data= {'date' : nowtimetxt, 'temp' : temp}) # POST request
+            print(response.text)
 
             # csv file make
             if os.path.exists(fileName) == False:
