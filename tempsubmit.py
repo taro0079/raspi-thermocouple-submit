@@ -25,15 +25,14 @@ while(running):
         fileName = str(nowtimeforfile.year) + '-' + str(nowtimeforfile.month) + '-' + str(nowtimeforfile.day) + '-data.csv'
         nowtime = time.time() # get now time
         elapsedtime = round(nowtime - starttime) # elapsed time 
-        divtime = 0.5 # minuites
+        divtime = 30 # minuites
 
         if elapsedtime % (divtime * 60) == 0:
-            response = requests.post(url, data= {'test':'test'})
-            print(response.status_code)
-            print(response.text)
             dtNow = datetime.datetime.now()
             temp = thermocouple.get_temp()
             data = [dtNow, temp]
+            # response = requests.post(url, data= {'date' : dtNow, 'temp' : temp}) # POST request
+            print(data)
 
             # csv file make
             if os.path.exists(fileName) == False:
