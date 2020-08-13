@@ -26,7 +26,7 @@ while(running):
         fileName = str(nowtimeforfile.year) + '-' + str(nowtimeforfile.month) + '-' + str(nowtimeforfile.day) + '-data.csv'
         nowtime = time.time() # get now time
         elapsedtime = round(nowtime - starttime) # elapsed time 
-        divtime = 30 # minuites
+        divtime = 10 # minuites
 
         if elapsedtime % (divtime * 60) == 0:
             dtNow = datetime.datetime.now()
